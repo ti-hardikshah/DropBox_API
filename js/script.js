@@ -4,14 +4,28 @@
  */
  options = {
   success: function(files) {
+    let append = "";
     files.forEach(function(file) {
-      add_img_to_list(file);
+      append += `<li class="list-group-item">
+        <a href="${file.link}">${file.link}</a>
+      </li>`;
     });
+
+    let demoUrl = document.getElementById("demo-urls");
+    demoUrl.innerHTML = append;
+
+    let fileJson = document.getElementById("file-json");
+    fileJson.innerHTML = JSON.stringify(files);
+
+    if(files.length > 0) {
+      let doneButton = document.getElementById("done-button");
+      doneButton.disabled = false;
+    }
   },
   cancel: function() {
     //optional
   },
-  linkType: "preview", // "preview" or "direct"
+  linkType: "direct", // "preview" or "direct"
   multiselect: true, // true or false
   extensions: ['.png', '.jpg'],
 };
