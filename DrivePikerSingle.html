@@ -72,15 +72,11 @@
 
     // A simple callback implementation.
     function pickerCallback(data) {
-      
-      data.forEach(function(file) {
-        console.log(file.docs[0])
-      });
-
-      // if (data.action == google.picker.Action.PICKED) {
-      //   var fileId = data.docs[0].URL;
-      //   alert('The user selected: ' + fileId);
-      // }
+      console.log(JSON.stringify(data));
+      if (data.action == google.picker.Action.PICKED) {
+        var fileId = data.docs[0].item_URL;
+        alert('The user selected: ' + fileId);
+      }
     }
     </script>
   </head>
