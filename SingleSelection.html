@@ -58,8 +58,7 @@
      // append += `<li class="list-group-item">
       //  <a href="${file.link}">${file.link}</a>
      // </li>`;
-     arr.push(file.link.toString());
-     console.log(arr);
+     arr.push(file.link);
     });
 
     //let demoUrl = document.getElementById("demo-urls");
@@ -68,7 +67,6 @@
     //let fileJson = document.getElementById("file-json");
     //fileJson.innerHTML = JSON.stringify(files);
     unityJson = JSON.stringify(arr);
-
     if(files.length > 0) {
       let doneButton = document.getElementById("done-button");
       doneButton.disabled = false;
