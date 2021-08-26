@@ -35,7 +35,7 @@
             </tbody>
           </table>
           <div class="text-center mt-5">
-            <button id="done-button" type="button" class="btn btn-primary" disabled>Done</button>
+            <button id="done-button" type="button" class="btn btn-primary" onclick="CloseWebView()" disabled>Done</button>
           </div>
     </div>
 
@@ -47,20 +47,29 @@
  * Chooser (Drop Box)
  * https://www.dropbox.com/developers/dropins/chooser/js
  */
+
+ let unityJson = "";
+ let arr; 
  options = {
   success: function(files) {
-    let append = "";
+   // let append = "";
+   arr = [];
+
     files.forEach(function(file) {
-      append += `<li class="list-group-item">
-        <a href="${file.link}">${file.link}</a>
-      </li>`;
+    //  append += `<li class="list-group-item">
+      //  <a href="${file.link}">${file.link}</a>
+      //</li>`;
+      arr.push(file.link.toString());
+      
     });
 
-    let demoUrl = document.getElementById("demo-urls");
-    demoUrl.innerHTML = append;
+    //let demoUrl = document.getElementById("demo-urls");
+    //demoUrl.innerHTML = append;
 
-    let fileJson = document.getElementById("file-json");
-    fileJson.innerHTML = JSON.stringify(files);
+   // let fileJson = document.getElementById("file-json");
+    //fileJson.innerHTML = JSON.stringify(files);
+    console.log(arr);
+    unityJson = JSON.stringify(arr);
 
     if(files.length > 0) {
       let doneButton = document.getElementById("done-button");
@@ -91,4 +100,9 @@ img.className = "th"
 document.getElementById("img_list").appendChild(li).appendChild(a).appendChild(img);
 }
 
+function CloseWebView() {
+  console.log(unityJson);
+  location.href = `uniwebview://${unityJson}`;
+  location.href = "uniwebview://close";
+}
 </script>
