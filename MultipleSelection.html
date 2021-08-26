@@ -100,9 +100,9 @@ img.className = "th"
 document.getElementById("img_list").appendChild(li).appendChild(a).appendChild(img);
 }
 
+
 function CloseWebView() {
   console.log(unityJson);
-  location.href = `uniwebview://${unityJson}`;
- // location.href = "uniwebview://close";
+  window.location.href = "uniwebview://selection-over?data=" + arr;
 }
 </script>
