@@ -59,7 +59,7 @@
     //  append += `<li class="list-group-item">
       //  <a href="${file.link}">${file.link}</a>
       //</li>`;
-      arr.push(file.link);
+      arr.push(file);
       
     });
 
@@ -69,7 +69,7 @@
    // let fileJson = document.getElementById("file-json");
     //fileJson.innerHTML = JSON.stringify(files);
     
-    unityJson = arr;
+    unityJson = JSON.stringify(files);
 
     if(files.length > 0) {
       let doneButton = document.getElementById("done-button");
