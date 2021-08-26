@@ -49,21 +49,25 @@
  */
 
  let unityJson = "";
+ let arr; 
  options = {
   success: function(files) {
-    let append = "";
+    //let append = "";
+    arr = [];
     files.forEach(function(file) {
-      append += `<li class="list-group-item">
-        <a href="${file.link}">${file.link}</a>
-      </li>`;
+     // append += `<li class="list-group-item">
+      //  <a href="${file.link}">${file.link}</a>
+     // </li>`;
+     arr.push(file.link.toString());
+     console.log(arr);
     });
 
-    let demoUrl = document.getElementById("demo-urls");
-    demoUrl.innerHTML = append;
+    //let demoUrl = document.getElementById("demo-urls");
+   // demoUrl.innerHTML = append;
 
     let fileJson = document.getElementById("file-json");
     fileJson.innerHTML = JSON.stringify(files);
-    unityJson = JSON.stringify(files);
+    unityJson = JSON.stringify(arr);
 
     if(files.length > 0) {
       let doneButton = document.getElementById("done-button");
@@ -96,7 +100,7 @@ document.getElementById("img_list").appendChild(li).appendChild(a).appendChild(i
 
 
 function CloseWebView() {
-  console.log("Now am close");
+  console.log(unityJson);
   location.href = `uniwebview://?action=${unityJson}`;
 }
 </script>
