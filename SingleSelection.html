@@ -47,6 +47,8 @@
  * Chooser (Drop Box)
  * https://www.dropbox.com/developers/dropins/chooser/js
  */
+
+ let unityJson = "";
  options = {
   success: function(files) {
     let append = "";
@@ -61,6 +63,7 @@
 
     let fileJson = document.getElementById("file-json");
     fileJson.innerHTML = JSON.stringify(files);
+    unityJson = JSON.stringify(files);
 
     if(files.length > 0) {
       let doneButton = document.getElementById("done-button");
@@ -94,6 +97,6 @@ document.getElementById("img_list").appendChild(li).appendChild(a).appendChild(i
 
 function CloseWebView() {
   console.log("Now am close");
-  location.href = "uniwebview://action?key=value&anotherKey=anotherValue";
+  location.href = `uniwebview://?action=${unityJson}`;
 }
 </script>
