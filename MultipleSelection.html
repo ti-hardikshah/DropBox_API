@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="container my-5">
+        <h2>Demo</h2>
+        <p>Click the button below to see the Chooser in action. This demo triggers a Chooser, which lets you choose a file from your Dropbox. Once a file is selected, the link is returned to the host website.</p>
+        <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Chooser button:</th>
+                <td>
+                    <div id="dropbox-container"></div>
+                </td>
+              </tr>
+              <tr hidden>
+                <th scope="row">Returns:</th>
+                <td>
+                    <div>
+                      <ul class="list-group" id="demo-urls">
+                      </ul>
+                    </div>
+                    <div id="file-json"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center mt-5">
+            <button id="done-button" type="button" class="btn btn-primary" disabled>Done</button>
+          </div>
+    </div>
+
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="o6on5kyogv098cb"></script>
+</body>
+</html>
+<script>
+  /**
+ * Chooser (Drop Box)
+ * https://www.dropbox.com/developers/dropins/chooser/js
+ */
+ options = {
+  success: function(files) {
+    let append = "";
+    files.forEach(function(file) {
+      append += `<li class="list-group-item">
+        <a href="${file.link}">${file.link}</a>
+      </li>`;
+    });
+
+    let demoUrl = document.getElementById("demo-urls");
+    demoUrl.innerHTML = append;
+
+    let fileJson = document.getElementById("file-json");
+    fileJson.innerHTML = JSON.stringify(files);
+
+    if(files.length > 0) {
+      let doneButton = document.getElementById("done-button");
+      doneButton.disabled = false;
+    }
+  },
+  cancel: function() {
+    //optional
+  },
+  linkType: "direct", // "preview" or "direct"
+  multiselect: true, // true or false
+  extensions: ['.png', '.jpg'],
+};
+
+var button = Dropbox.createChooseButton(options);
+document.getElementById("dropbox-container").appendChild(button);
+
+function add_img_to_list(file) {
+var li  = document.createElement('li');
+var a   = document.createElement('a');
+a.href = file.link;
+var img = new Image();
+var src = file.thumbnailLink;
+src = src.replace("bounding_box=75", "bounding_box=256");
+src = src.replace("mode=fit", "mode=crop");
+img.src = src;
+img.className = "th"
+document.getElementById("img_list").appendChild(li).appendChild(a).appendChild(img);
+}
+
+</script>
