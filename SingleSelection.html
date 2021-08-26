@@ -35,9 +35,7 @@
             </tbody>
           </table>
           <div class="text-center mt-5">
-            <!-- <button  > -->
-              <a id="done-button" type="button" class="btn btn-primary" disabled href="uniwebview://action?key=value&anotherKey=anotherValue">Done</a>
-            <!-- </button> -->
+            <button  id="done-button" type="button" class="btn btn-primary" onclick="CloseWebView()" disabled>Done</button>
           </div>
     </div>
 
@@ -93,4 +91,9 @@ img.className = "th"
 document.getElementById("img_list").appendChild(li).appendChild(a).appendChild(img);
 }
 
+
+function CloseWebView() {
+  console.log("Now am close");
+  location.href = "uniwebview://action?key=value&anotherKey=anotherValue";
+}
 </script>
