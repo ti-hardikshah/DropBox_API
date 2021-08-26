@@ -49,24 +49,20 @@
  */
 
  let unityJson = "";
- let arr; 
+ var Data = {
+    links: []
+};
  options = {
   success: function(files) {
-    //let append = "";
-    arr = [];
+   
     files.forEach(function(file) {
-     // append += `<li class="list-group-item">
-      //  <a href="${file.link}">${file.link}</a>
-     // </li>`;
-     arr.push(file);
-    });
+      Data.links.push({ 
+          "url" : file.link,
+      });
+  });
 
-    //let demoUrl = document.getElementById("demo-urls");
-   // demoUrl.innerHTML = append;
+    unityJson = JSON.stringify(Data);
 
-    //let fileJson = document.getElementById("file-json");
-    //fileJson.innerHTML = JSON.stringify(files);
-    unityJson =JSON.stringify(files);
     if(files.length > 0) {
       let doneButton = document.getElementById("done-button");
       doneButton.disabled = false;
